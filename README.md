@@ -14,6 +14,8 @@ and then you will be able to input your own data types directly into the vfxgal 
 writing vfxgal ships with houdini adaptors. All you need to do is include core/adaptors/houdini.hpp, and then you
 can pass houdini types directly into the various vfxgal algorithms.
 
+Dependencies: boost, tbb, qhull (cmdlin only, for voronoi only)
+
 houdini/
 --------
 This is the houdini binding for vfxgal. Various geometric functions are implemented as SOP nodes.
