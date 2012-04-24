@@ -1,5 +1,3 @@
-#include <vfxgal_hou/ScopedCook.h>
-#include <vfxgal_hou/util.h>
 #include <UT/UT_DSOVersion.h>
 #include <OP/OP_OperatorTable.h>
 #include <GU/GU_PrimPoly.h>
@@ -7,12 +5,13 @@
 #include <vfxgal/core/adaptors/houdini.hpp>
 #include <vfxgal/core/algorithm/voronoiFractureMesh3D.hpp>
 #include <vfxgal/core/algorithm/remapMesh.hpp>
-#include <vfxgal_hou/GeoAttributeCopier.h>
 #include "SOP_VoronoiFracture.h"
+#include "util/GeoAttributeCopier.h"
 #include "util/simple_mesh.h"
+#include "util/ScopedCook.h"
+#include "util/util.h"
 
 
-using namespace vfxgal_hou;
 using namespace vfxgal_hou;
 
 

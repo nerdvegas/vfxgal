@@ -1,6 +1,3 @@
-#include <vfxgal_hou/ScopedCook.h>
-#include <vfxgal_hou/util.h>
-#include <vfxgal_hou/GeoAttributeCopier.h>
 #include <UT/UT_DSOVersion.h>
 #include <OP/OP_OperatorTable.h>
 #include <GU/GU_PrimPoly.h>
@@ -12,9 +9,11 @@
 #include <sstream>
 #include "SOP_AddEdges.h"
 #include "util/simple_mesh.h"
+#include "util/ScopedCook.h"
+#include "util/util.h"
+#include "util/GeoAttributeCopier.h"
 
 
-using namespace vfxgal_hou;
 using namespace vfxgal_hou;
 
 
