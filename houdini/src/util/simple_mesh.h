@@ -1,25 +1,20 @@
-#ifndef _HDKUTILS_GEOUTILS__H_
-#define _HDKUTILS_GEOUTILS__H_
+#ifndef _CLIP_SOPS_UTIL_SIMPLE_MESH__H_
+#define _CLIP_SOPS_UTIL_SIMPLE_MESH__H_
 
-#include <GU/GU_Detail.h>
-
-
-namespace hdk_utils {
-
-
-	/*
-	 * @brief deleteAttribute
-	 * Delete all attributes with the given name and given class, from geo.
-	 * @param geo Geometry to delete attribute(s) from.
-	 * @attribClass Attribute class.
-	 * @returns The number of attributes that were deleted from geo.
-	 */
-	unsigned int deleteAttribute(GU_Detail& geo, const UT_String& attribName,
-		GEO_AttributeOwner attribClass);
+#include <vfxgal/core/adaptors/mesh.hpp>
+#include <vfxgal/core/simple_mesh.hpp>
+#include <GU/GU_PrimPoly.h>
 
 
-}
+namespace clip_sops { namespace util {
 
+	void add_simple_mesh(GU_Detail& gdp, const vfxgal::simple_mesh<Imath::V3f>& smesh,
+		const std::string& pointIDAttrib = "", const std::vector<int>* pointIDs = NULL,
+		const std::string& polyIDAttrib = "", const std::vector<int>* polyIDs = NULL,
+		const std::string& cellTypeAttrib = "", unsigned int cellType = 0,
+		const std::string& cellIDAttrib = "", unsigned int cellID = 0);
+
+} }
 
 #endif
 

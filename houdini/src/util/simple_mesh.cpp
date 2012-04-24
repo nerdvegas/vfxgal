@@ -4,7 +4,7 @@
 namespace clip_sops { namespace util {
 
 void add_simple_mesh(GU_Detail& gdp,
-	const dgal::simple_mesh<Imath::V3f>& smesh,
+	const vfxgal::simple_mesh<Imath::V3f>& smesh,
 	const std::string& pointIDAttrib, const std::vector<int>* pointIDs,
 	const std::string& polyIDAttrib, const std::vector<int>* polyIDs,
 	const std::string& cellTypeAttrib, unsigned int cellType,
