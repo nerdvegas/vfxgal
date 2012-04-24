@@ -23,7 +23,7 @@ notes
 In H11, the voronoi fracturer benchmarked at ~60* faster than houdini's implementation, and is more stable. One 
 strange caveat however seemed related to multithreading and the audio driver - the following would result in ~8* 
 speed increase on an 8-core machine:
-> export LD_PRELOAD=$LD_PRELOAD:/usr/lib64/libaoss.so.0
+    export LD_PRELOAD=$LD_PRELOAD:/usr/lib64/libaoss.so.0
 ..which suggested for some reason that mutithreading worked correctly in the presence of libaoss. On a reasonable
 8-core machine (can't remember the specs) you should be able to fracture the unit cube into 1M pieces in approx
 1 minute. If it's more like 8, you might be having this obscure issue.
