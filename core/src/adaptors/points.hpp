@@ -5,12 +5,12 @@
 #include <OpenEXR/ImathVec.h>
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @class points_adaptor
 	 * @brief
-	 * Adaptor for plugging various data sources into dgal algorithms to represent a list
+	 * Adaptor for plugging various data sources into vfxgal algorithms to represent a list
 	 * of points. The default implementation can be templatised on std::vector<U>, where
 	 * U is any Imath Vec type.
 	 * @note A list of points is often also used to represent a polygon.

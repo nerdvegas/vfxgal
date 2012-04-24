@@ -7,7 +7,7 @@
 #include <sstream>
 
 
-namespace dgal {
+namespace vfxgal {
 
 	class SpatialError : public std::runtime_error
 	{

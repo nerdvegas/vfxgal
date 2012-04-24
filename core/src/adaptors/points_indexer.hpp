@@ -5,13 +5,13 @@
 #include <boost/mpl/bool.hpp>
 #include <assert.h>
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @class points_indexer
 	 * @brief
 	 * This class and the following points_adaptor specialization allow us to pass a set of
-	 * indexed points into dgal, rather than the points directly.
+	 * indexed points into vfxgal, rather than the points directly.
 	 */
 	template<typename Points>
 	struct points_indexer

@@ -5,7 +5,7 @@
 #include "mesh.hpp"
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @class mesh_points

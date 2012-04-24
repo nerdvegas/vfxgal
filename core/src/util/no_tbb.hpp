@@ -11,7 +11,7 @@
  * tbb on/off with a compile-time define.
  */
 
-namespace dgal { namespace no_tbb {
+namespace vfxgal { namespace no_tbb {
 
 	// blocked_range
 	template<typename T>

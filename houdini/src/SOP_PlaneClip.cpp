@@ -1,19 +1,19 @@
-#include <hdk_utils/ScopedCook.h>
-#include <hdk_utils/util.h>
-#include <hdk_utils/GeoAttributeCopier.h>
+#include <vfxgal_hou/ScopedCook.h>
+#include <vfxgal_hou/util.h>
+#include <vfxgal_hou/GeoAttributeCopier.h>
 #include <UT/UT_DSOVersion.h>
 #include <OP/OP_OperatorTable.h>
 #include <GU/GU_PrimPoly.h>
 #include <houdini/PRM/PRM_Include.h>
-#include <dgal/adaptors/houdini.hpp>
-#include <dgal/algorithm/clipMesh3D.hpp>
-#include <dgal/algorithm/remapMesh.hpp>
+#include <vfxgal/core/adaptors/houdini.hpp>
+#include <vfxgal/core/algorithm/clipMesh3D.hpp>
+#include <vfxgal/core/algorithm/remapMesh.hpp>
 #include "SOP_PlaneClip.h"
 #include "util/simple_mesh.h"
 
 
-using namespace clip_sops;
-using namespace hdk_utils;
+using namespace vfxgal_hou;
+using namespace vfxgal_hou;
 
 
 void newSopOperator(OP_OperatorTable *table)
@@ -131,9 +131,9 @@ Imath::V3f SOP_PlaneClip::getDirection(double time)
 OP_ERROR SOP_PlaneClip::cookMySop(OP_Context &context)
 {
 	typedef Imath::V3f 						vec3_type;
-	typedef dgal::simple_mesh<vec3_type>	simple_mesh;
+	typedef vfxgal::simple_mesh<vec3_type>	simple_mesh;
 
-	hdk_utils::ScopedCook scc(*this, context, "Performing drd plane clip");
+	vfxgal_hou::ScopedCook scc(*this, context, "Performing drd plane clip");
 	if(!scc.good())
 		return error();
 
@@ -169,13 +169,13 @@ OP_ERROR SOP_PlaneClip::cookMySop(OP_Context &context)
 	evalString(polyIDAttrib, "poly_id_attrib", 0, now);
 	polyIDAttrib.trimSpace();
 
-	dgal::IntersectType inters = dgal::clipMesh3D<GEO_Detail>(
+	vfxgal::IntersectType inters = vfxgal::clipMesh3D<GEO_Detail>(
 		*gdp0, cutPlanes.begin(), cutPlanes.end(), closed, break_holes,
 		cmesh, &pointIDs, &polyIDs, minEdgeLen);
 
-	if(inters == dgal::INTERSECT_OUTSIDE)
+	if(inters == vfxgal::INTERSECT_OUTSIDE)
 		return error();
-	else if(inters == dgal::INTERSECT_INSIDE)
+	else if(inters == vfxgal::INTERSECT_INSIDE)
 	{
 		duplicateSource(0, context);
 		return error();
@@ -185,9 +185,9 @@ OP_ERROR SOP_PlaneClip::cookMySop(OP_Context &context)
 	util::add_simple_mesh(*gdp, cmesh, polyIDAttrib.toStdString(), &polyIDs);
 
 	// calculate the remapping.
-	dgal::MeshRemapResult<unsigned int, float> remap_result;
-	dgal::MeshRemapSettings<int> remap_settings(true, true, true, 0, 0, &pointIDs, &polyIDs);
-	dgal::remapMesh<GEO_Detail, simple_mesh, int>(*gdp0, cmesh, remap_settings, remap_result);
+	vfxgal::MeshRemapResult<unsigned int, float> remap_result;
+	vfxgal::MeshRemapSettings<int> remap_settings(true, true, true, 0, 0, &pointIDs, &polyIDs);
+	vfxgal::remapMesh<GEO_Detail, simple_mesh, int>(*gdp0, cmesh, remap_settings, remap_result);
 
 	// apply the remapping
 	GeoAttributeCopier gc(*gdp);

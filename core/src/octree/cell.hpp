@@ -11,7 +11,7 @@
 #include "../exceptions.h"
 #include "../plane.hpp"
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @class Cell

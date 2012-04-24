@@ -7,12 +7,12 @@
 #include "points_indexer.hpp"
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @class mesh_adaptor
 	 * @brief
-	 * Adaptor for plugging various data sources into dgal algorithms to represent a mesh.
+	 * Adaptor for plugging various data sources into vfxgal algorithms to represent a mesh.
 	 * The default implementation can be templatised on simple_mesh<U>, where U is any
 	 * Imath Vec type.
 	 */

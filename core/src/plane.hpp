@@ -9,7 +9,7 @@
 #include <limits>
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief inside

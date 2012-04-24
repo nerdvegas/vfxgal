@@ -9,7 +9,7 @@
 #include "util.hpp"
 
 
-namespace dgal {
+namespace vfxgal {
 
 
 	/*

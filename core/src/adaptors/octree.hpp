@@ -4,7 +4,7 @@
 #include "../spatials/octree.hpp"
 #include "mesh.hpp"
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief Octree mesh specialization. Note that only the zeroeth mesh in an octree

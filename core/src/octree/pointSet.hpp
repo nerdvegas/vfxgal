@@ -8,7 +8,7 @@
 #include "../adaptors/points.hpp"
 #include "../adaptors/points.hpp"
 
-namespace dgal {
+namespace vfxgal {
 	/*
 	 * @class Octree
 	 * @brief
@@ -130,7 +130,7 @@ void PointSet<Points3D>::getBarycenter(unsigned elememIndex, point_type& center 
 }
 
 
-}//dgal
+}//vfxgal
 
 #endif // _DGAL_POINT_SET__H_
 

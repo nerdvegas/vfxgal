@@ -5,7 +5,7 @@
 #include <OpenEXR/ImathBox.h>
 #include "../plane.hpp"
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @class Cube

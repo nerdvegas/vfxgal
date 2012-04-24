@@ -4,7 +4,7 @@
 #include "../poly3D.hpp"
 #include "clipPoly2D.hpp"
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief clipPoly3D

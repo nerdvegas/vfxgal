@@ -16,7 +16,7 @@
 
 #ifdef DGAL_NO_TBB
 #include "../util/no_tbb.hpp"
-namespace _tbb = dgal::no_tbb;
+namespace _tbb = vfxgal::no_tbb;
 #else
 #include <tbb/parallel_for.h>
 #include <tbb/blocked_range.h>
@@ -25,7 +25,7 @@ namespace _tbb = tbb;
 #endif
 
 
-namespace dgal {
+namespace vfxgal {
 
 
 	struct VoronoiSettings

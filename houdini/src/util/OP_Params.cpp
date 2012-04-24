@@ -1,6 +1,6 @@
 #include "OP_Params.h"
 
-namespace hdk_utils {
+namespace vfxgal_hou {
 
 std::string getStringParam(OP_Parameters& node, OP_Context &context,
 	const std::string& label, bool trimspace)

@@ -6,7 +6,7 @@
 #include <OP/OP_Parameters.h>
 #include <UT/UT_String.h>
 
-namespace hdk_utils {
+namespace vfxgal_hou {
 
 	std::string getStringParam(OP_Parameters& node, OP_Context &context,
 		const std::string& label, bool trimspace = true);

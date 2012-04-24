@@ -21,7 +21,7 @@
 #include "points.hpp"
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief is_convex

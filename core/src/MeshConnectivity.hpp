@@ -9,7 +9,7 @@
 #include <stdexcept>
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @class MeshConnectivity

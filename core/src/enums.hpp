@@ -1,7 +1,7 @@
 #ifndef _DGAL_ENUMS__H_
 #define _DGAL_ENUMS__H_
 
-namespace dgal {
+namespace vfxgal {
 
 	enum IntersectType
 	{

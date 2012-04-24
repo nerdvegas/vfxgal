@@ -7,7 +7,7 @@
 #define SOP_NAME "clean_mesh_drd"
 #define SOP_LABEL "Clean Mesh drd"
 
-namespace clip_sops
+namespace vfxgal_hou
 {
 
 	class SOP_CleanMesh : public SOP_Node

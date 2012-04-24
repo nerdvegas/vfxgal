@@ -10,7 +10,7 @@
 #define PARM_ORIGIN "origin"
 #define PARM_DIRECTION "direction"
 
-namespace clip_sops
+namespace vfxgal_hou
 {
 
 	class SOP_PlaneClip : public SOP_Node

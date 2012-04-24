@@ -7,7 +7,7 @@
 #include <iostream>
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief convertPoints

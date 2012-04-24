@@ -8,7 +8,7 @@
 #include <OpenEXR/ImathPlane.h>
 
 
-namespace dgal { namespace detail {
+namespace vfxgal { namespace detail {
 
 	template<typename T>
 	struct ClippingContext

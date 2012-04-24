@@ -8,7 +8,7 @@
 #include <cassert>
 
 
-namespace dgal {
+namespace vfxgal {
 
 
 	/*

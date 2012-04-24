@@ -12,7 +12,7 @@
 #include "../simple_mesh.hpp"
 
 
-namespace dgal {
+namespace vfxgal {
 
 
 	/*

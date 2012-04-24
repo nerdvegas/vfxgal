@@ -7,7 +7,7 @@
 #include "../MeshConnectivity.hpp"
 #include <algorithm>
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief addMeshEdges

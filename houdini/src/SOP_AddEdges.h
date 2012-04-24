@@ -7,7 +7,7 @@
 #define SOP_NAME "add_edges"
 #define SOP_LABEL "Add Edges drd"
 
-namespace clip_sops
+namespace vfxgal_hou
 {
 
 	class SOP_AddEdges : public SOP_Node

@@ -4,7 +4,7 @@
 #include "adaptors/points_indexer.hpp"
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @class EdgeIntersection

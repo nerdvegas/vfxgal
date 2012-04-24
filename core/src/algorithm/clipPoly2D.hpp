@@ -8,7 +8,7 @@
 #include "../ClippedPoly.hpp"
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief clipPoly2D

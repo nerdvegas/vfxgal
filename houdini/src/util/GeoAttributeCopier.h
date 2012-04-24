@@ -15,7 +15,7 @@
 #include <stdexcept>
 
 
-namespace hdk_utils {
+namespace vfxgal_hou {
 
 
 	/*

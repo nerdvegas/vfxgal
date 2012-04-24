@@ -7,7 +7,7 @@
 #include <boost/utility.hpp>
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief strip_unused_points

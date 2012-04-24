@@ -5,7 +5,7 @@
 #include "Line2.hpp"
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief intersects

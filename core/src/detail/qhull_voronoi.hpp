@@ -9,7 +9,7 @@
 #include <boost/process.hpp>
 
 
-namespace dgal { namespace detail {
+namespace vfxgal { namespace detail {
 
 
 	/*

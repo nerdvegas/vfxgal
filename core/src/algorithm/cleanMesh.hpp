@@ -7,7 +7,7 @@
 #include "../adaptors/points.hpp"
 #include "../simple_mesh.hpp"
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief cleanMesh

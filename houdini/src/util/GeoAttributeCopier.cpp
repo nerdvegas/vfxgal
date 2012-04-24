@@ -4,7 +4,7 @@
 #include <GB/GB_AttributeDefines.h>
 
 
-namespace hdk_utils {
+namespace vfxgal_hou {
 
 GeoAttributeCopier::GeoAttributeCopier(GU_Detail& destGeo)
 :	m_destGeo(destGeo)

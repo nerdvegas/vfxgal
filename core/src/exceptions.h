@@ -12,7 +12,7 @@
 }
 
 
-namespace dgal {
+namespace vfxgal {
 
 	// general exception
 	class DgalError : public std::runtime_error

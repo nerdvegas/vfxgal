@@ -6,7 +6,7 @@
 #include <vector>
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @class VoronoiCell

@@ -7,7 +7,7 @@
 #define SOP_NAME "voronoi_fracture"
 #define SOP_LABEL "Voronoi Fracture drd"
 
-namespace clip_sops
+namespace vfxgal_hou
 {
 
 	class SOP_VoronoiFracture : public SOP_Node

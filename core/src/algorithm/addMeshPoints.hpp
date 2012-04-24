@@ -10,7 +10,7 @@
 #include <iterator>
 #include <set>
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief addMeshPoints

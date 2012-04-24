@@ -22,7 +22,7 @@
  * then clipping errors can occur.
  */
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief clipMesh3D

@@ -5,7 +5,7 @@
 #include <SOP/SOP_Node.h>
 
 
-namespace hdk_utils {
+namespace vfxgal_hou {
 
 	/*
 	 * @class ScopedCook

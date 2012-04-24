@@ -1,21 +1,21 @@
-#include <hdk_utils/ScopedCook.h>
-#include <hdk_utils/util.h>
-#include <hdk_utils/GeoAttributeCopier.h>
+#include <vfxgal_hou/ScopedCook.h>
+#include <vfxgal_hou/util.h>
+#include <vfxgal_hou/GeoAttributeCopier.h>
 #include <UT/UT_DSOVersion.h>
 #include <OP/OP_OperatorTable.h>
 #include <GU/GU_PrimPoly.h>
 #include <houdini/PRM/PRM_Include.h>
-#include <dgal/adaptors/houdini.hpp>
-#include <dgal/algorithm/addMeshEdges.hpp>
-#include <dgal/algorithm/remapMesh.hpp>
+#include <vfxgal/core/adaptors/houdini.hpp>
+#include <vfxgal/core/algorithm/addMeshEdges.hpp>
+#include <vfxgal/core/algorithm/remapMesh.hpp>
 #include <pystring.h>
 #include <sstream>
 #include "SOP_AddEdges.h"
 #include "util/simple_mesh.h"
 
 
-using namespace clip_sops;
-using namespace hdk_utils;
+using namespace vfxgal_hou;
+using namespace vfxgal_hou;
 
 
 void newSopOperator(OP_OperatorTable *table)
@@ -73,11 +73,11 @@ float SOP_AddEdges::getVariableValue(int index, int thread)
 
 OP_ERROR SOP_AddEdges::cookMySop(OP_Context &context)
 {
-	typedef dgal::simple_mesh<Imath::V3f>					simple_mesh;
-	typedef dgal::EdgeIntersection<unsigned int, float> 	edge_intersection;
+	typedef vfxgal::simple_mesh<Imath::V3f>					simple_mesh;
+	typedef vfxgal::EdgeIntersection<unsigned int, float> 	edge_intersection;
 	typedef std::pair<unsigned int, unsigned int>			edge_type;
 
-	hdk_utils::ScopedCook scc(*this, context, "Performing edges add");
+	vfxgal_hou::ScopedCook scc(*this, context, "Performing edges add");
 	if(!scc.good())
 		return error();
 
@@ -107,7 +107,7 @@ OP_ERROR SOP_AddEdges::cookMySop(OP_Context &context)
 	simple_mesh* pm = NULL;
 	std::vector<int> points_remap;
 	std::vector<int> polys_remap;
-	dgal::MeshRemapSettings<int> remap_settings(true, true, true, 0, 0, &points_remap, &polys_remap);
+	vfxgal::MeshRemapSettings<int> remap_settings(true, true, true, 0, 0, &points_remap, &polys_remap);
 	std::map<std::string, unsigned int> new_points;
 
 	// create new points
@@ -148,7 +148,7 @@ OP_ERROR SOP_AddEdges::cookMySop(OP_Context &context)
 		}
 		else
 		{
-			dgal::addMeshPoints<GEO_Detail, std::vector<edge_intersection>::const_iterator>(
+			vfxgal::addMeshPoints<GEO_Detail, std::vector<edge_intersection>::const_iterator>(
 				*gdp0, m, edgeints.begin(), edgeints.end(), &points_remap, &polys_remap);
 			pm = &m;
 		}
@@ -194,14 +194,14 @@ OP_ERROR SOP_AddEdges::cookMySop(OP_Context &context)
 		if(pm)
 		{
 			std::vector<int> polys_remap2;
-			dgal::addMeshEdges<simple_mesh, std::vector<edge_type>::const_iterator>(
+			vfxgal::addMeshEdges<simple_mesh, std::vector<edge_type>::const_iterator>(
 				*pm, m2, new_edges.begin(), new_edges.end(), &polys_remap2);
 
-			dgal::combinePolyRemapping(polys_remap, polys_remap2, polys_remap);
+			vfxgal::combinePolyRemapping(polys_remap, polys_remap2, polys_remap);
 		}
 		else
 		{
-			dgal::addMeshEdges<GEO_Detail, std::vector<edge_type>::const_iterator>(
+			vfxgal::addMeshEdges<GEO_Detail, std::vector<edge_type>::const_iterator>(
 				*gdp0, m2, new_edges.begin(), new_edges.end(), &polys_remap);
 		}
 
@@ -215,8 +215,8 @@ OP_ERROR SOP_AddEdges::cookMySop(OP_Context &context)
 		util::add_simple_mesh(*gdp, *pm);
 
 		// calc attrib remapping
-		dgal::MeshRemapResult<unsigned int, float> remap_result;
-		dgal::remapMesh<GEO_Detail, simple_mesh, int>(*gdp0, *pm, remap_settings, remap_result);
+		vfxgal::MeshRemapResult<unsigned int, float> remap_result;
+		vfxgal::remapMesh<GEO_Detail, simple_mesh, int>(*gdp0, *pm, remap_settings, remap_result);
 
 		// remap attributes
 		GeoAttributeCopier gc(*gdp);

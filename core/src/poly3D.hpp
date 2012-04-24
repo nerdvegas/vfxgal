@@ -15,7 +15,7 @@
  * clockwise winding order, when looking down at the poly from its positive normal side.
  */
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief calc_newell_normal

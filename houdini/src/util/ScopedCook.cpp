@@ -1,6 +1,6 @@
 #include "ScopedCook.h"
 
-namespace hdk_utils {
+namespace vfxgal_hou {
 
 
 ScopedCook::ScopedCook(SOP_Node& sop, OP_Context& ctxt, const char* msg)

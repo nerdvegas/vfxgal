@@ -6,7 +6,7 @@
 #include "../poly2D.hpp"
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief break_holes

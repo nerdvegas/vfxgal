@@ -5,7 +5,7 @@
 #include <boost/unordered_set.hpp>
 #include <map>
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief addPolyEdges

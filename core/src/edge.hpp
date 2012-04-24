@@ -5,7 +5,7 @@
 #include <boost/functional/hash.hpp>
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @class edge

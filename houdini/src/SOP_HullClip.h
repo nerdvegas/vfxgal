@@ -7,7 +7,7 @@
 #define SOP_NAME "hull_clip"
 #define SOP_LABEL "Hull Clip"
 
-namespace clip_sops
+namespace vfxgal_hou
 {
 
 	class SOP_HullClip : public SOP_Node

@@ -5,7 +5,7 @@
 #include <OpenEXR/ImathBox.h>
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief get_bounds

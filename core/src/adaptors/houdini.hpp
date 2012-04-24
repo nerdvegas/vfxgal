@@ -6,7 +6,7 @@
 #include "points.hpp"
 #include "mesh.hpp"
 
-namespace dgal {
+namespace vfxgal {
 
 
 	/*

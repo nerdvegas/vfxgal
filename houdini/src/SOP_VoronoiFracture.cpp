@@ -1,19 +1,19 @@
-#include <hdk_utils/ScopedCook.h>
-#include <hdk_utils/util.h>
+#include <vfxgal_hou/ScopedCook.h>
+#include <vfxgal_hou/util.h>
 #include <UT/UT_DSOVersion.h>
 #include <OP/OP_OperatorTable.h>
 #include <GU/GU_PrimPoly.h>
 #include <houdini/PRM/PRM_Include.h>
-#include <dgal/adaptors/houdini.hpp>
-#include <dgal/algorithm/voronoiFractureMesh3D.hpp>
-#include <dgal/algorithm/remapMesh.hpp>
-#include <hdk_utils/GeoAttributeCopier.h>
+#include <vfxgal/core/adaptors/houdini.hpp>
+#include <vfxgal/core/algorithm/voronoiFractureMesh3D.hpp>
+#include <vfxgal/core/algorithm/remapMesh.hpp>
+#include <vfxgal_hou/GeoAttributeCopier.h>
 #include "SOP_VoronoiFracture.h"
 #include "util/simple_mesh.h"
 
 
-using namespace clip_sops;
-using namespace hdk_utils;
+using namespace vfxgal_hou;
+using namespace vfxgal_hou;
 
 
 void newSopOperator(OP_OperatorTable *table)
@@ -128,12 +128,12 @@ float SOP_VoronoiFracture::getVariableValue(int index, int thread)
 
 OP_ERROR SOP_VoronoiFracture::cookMySop(OP_Context &context)
 {
-	typedef dgal::simple_mesh<Imath::V3f> 						simple_mesh;
-	typedef dgal::VoronoiCellMesh<Imath::V3f>					voronoi_cell_mesh;
+	typedef vfxgal::simple_mesh<Imath::V3f> 						simple_mesh;
+	typedef vfxgal::VoronoiCellMesh<Imath::V3f>					voronoi_cell_mesh;
 	typedef boost::shared_ptr<voronoi_cell_mesh>				voronoi_cell_mesh_ptr;
 	typedef std::map<unsigned int, voronoi_cell_mesh_ptr>		voronoi_cell_mesh_map;
 
-	hdk_utils::ScopedCook scc(*this, context, "Performing voronoi fracture");
+	vfxgal_hou::ScopedCook scc(*this, context, "Performing voronoi fracture");
 	if(!scc.good())
 		return error();
 
@@ -175,7 +175,7 @@ OP_ERROR SOP_VoronoiFracture::cookMySop(OP_Context &context)
 	gdp->clearAndDestroy();
 
 	// generate clipped voronoi cells
-	dgal::VoronoiSettings vs(
+	vfxgal::VoronoiSettings vs(
 		true,
 		true,
 		inc_unbounded_cells,
@@ -189,18 +189,18 @@ OP_ERROR SOP_VoronoiFracture::cookMySop(OP_Context &context)
 	voronoi_cell_mesh_map vcells;
 
 	try {
-		dgal::voronoiFractureMesh3D<GEO_Detail, GEO_PointList>(
+		vfxgal::voronoiFractureMesh3D<GEO_Detail, GEO_PointList>(
 			gdp0, gdp1->points(), vcells, vs);
 	}
-	catch(const dgal::DgalSubprocessError& e)
+	catch(const vfxgal::DgalSubprocessError& e)
 	{
 		SOP_ADD_FATAL(SOP_MESSAGE, e.what());
 	}
 
 	if(gdp0)
 	{
-		dgal::MeshRemapSettings<int> remap_settings;
-		dgal::MeshRemapResult<unsigned int, float> remap_result;
+		vfxgal::MeshRemapSettings<int> remap_settings;
+		vfxgal::MeshRemapResult<unsigned int, float> remap_result;
 		GeoAttributeCopier::remapping_vector cell_pt_remap;
 
 		// construct the clipped cells as houdini geometry, and build up remapping
@@ -210,7 +210,7 @@ OP_ERROR SOP_VoronoiFracture::cookMySop(OP_Context &context)
 			const voronoi_cell_mesh& vmesh = *(it->second);
 			unsigned int cellId = it->first;
 
-			if(vmesh.m_type == dgal::INTERSECT_INTERSECTS)
+			if(vmesh.m_type == vfxgal::INTERSECT_INTERSECTS)
 			{
 				util::add_simple_mesh(*gdp, vmesh.m_mesh,
 					pointIDAttribStr, &(vmesh.m_pointRemapping),
@@ -221,7 +221,7 @@ OP_ERROR SOP_VoronoiFracture::cookMySop(OP_Context &context)
 				remap_settings.m_pointMapping = &(vmesh.m_pointRemapping);
 				remap_settings.m_polyMapping = &(vmesh.m_polyRemapping);
 
-				dgal::remapMesh<GEO_Detail, simple_mesh, int>(*gdp0, vmesh.m_mesh,
+				vfxgal::remapMesh<GEO_Detail, simple_mesh, int>(*gdp0, vmesh.m_mesh,
 					remap_settings, remap_result);
 
 				remap_settings.m_firstPoint += vmesh.m_mesh.numPoints();
@@ -239,7 +239,7 @@ OP_ERROR SOP_VoronoiFracture::cookMySop(OP_Context &context)
 			const voronoi_cell_mesh& vmesh = *(it->second);
 			unsigned int cellId = it->first;
 
-			if(vmesh.m_type != dgal::INTERSECT_INTERSECTS)
+			if(vmesh.m_type != vfxgal::INTERSECT_INTERSECTS)
 			{
 				util::add_simple_mesh(*gdp, vmesh.m_mesh,
 					pointIDAttribStr, NULL,

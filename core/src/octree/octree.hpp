@@ -9,7 +9,7 @@
 #include "limits.h"
 #include <set>
 
-namespace dgal {
+namespace vfxgal {
 	/*
 	 * @class Octree
 	 * @brief
@@ -743,7 +743,7 @@ void  Octree<DataSet>::getAffineTransform(cube_type& outTransform)
 	outTransform.set(_rootTranslate,_rootScale);
 }
 
-} // namespace dgal
+} // namespace vfxgal
 #endif //_DGAL_OCTREE__H_
 
 

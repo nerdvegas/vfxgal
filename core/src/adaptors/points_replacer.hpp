@@ -5,7 +5,7 @@
 #include <boost/mpl/bool.hpp>
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @class points_replacer

@@ -4,7 +4,7 @@
 #include <OpenEXR/ImathVec.h>
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @brief getSmallestAxis

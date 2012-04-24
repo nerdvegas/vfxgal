@@ -8,7 +8,7 @@
 #include "../adaptors/mesh.hpp"
 #include "../adaptors/points.hpp"
 
-namespace dgal {
+namespace vfxgal {
 	/*
 	 * @class PolygonSet
 	 * @brief
@@ -192,7 +192,7 @@ void PolygonSet<Points3D>::getBoundingCube(cube_type& c) const
 	c.set(_bbox.min,maxlen);
 }
 
-}//dgal
+}//vfxgal
 
 #endif // _DGAL_POLYGON_SET__H_
 

@@ -5,7 +5,7 @@
 #include <limits>
 
 
-namespace dgal {
+namespace vfxgal {
 
 	/*
 	 * @class LineSegment
