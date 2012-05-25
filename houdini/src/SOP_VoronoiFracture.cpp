@@ -1,10 +1,10 @@
 #include <UT/UT_DSOVersion.h>
 #include <OP/OP_OperatorTable.h>
 #include <GU/GU_PrimPoly.h>
-#include <houdini/PRM/PRM_Include.h>
-#include <vfxgal/core/adaptors/houdini.hpp>
-#include <vfxgal/core/algorithm/voronoiFractureMesh3D.hpp>
-#include <vfxgal/core/algorithm/remapMesh.hpp>
+#include <PRM/PRM_Include.h>
+#include <vfxgal/adaptors/houdini.hpp>
+#include <vfxgal/algorithm/voronoiFractureMesh3D.hpp>
+#include <vfxgal/algorithm/remapMesh.hpp>
 #include "SOP_VoronoiFracture.h"
 #include "util/GeoAttributeCopier.h"
 #include "util/simple_mesh.h"
@@ -127,7 +127,7 @@ float SOP_VoronoiFracture::getVariableValue(int index, int thread)
 
 OP_ERROR SOP_VoronoiFracture::cookMySop(OP_Context &context)
 {
-	typedef vfxgal::simple_mesh<Imath::V3f> 						simple_mesh;
+	typedef vfxgal::simple_mesh<Imath::V3f> 					simple_mesh;
 	typedef vfxgal::VoronoiCellMesh<Imath::V3f>					voronoi_cell_mesh;
 	typedef boost::shared_ptr<voronoi_cell_mesh>				voronoi_cell_mesh_ptr;
 	typedef std::map<unsigned int, voronoi_cell_mesh_ptr>		voronoi_cell_mesh_map;
@@ -209,9 +209,9 @@ OP_ERROR SOP_VoronoiFracture::cookMySop(OP_Context &context)
 			const voronoi_cell_mesh& vmesh = *(it->second);
 			unsigned int cellId = it->first;
 
-			if(vmesh.m_type == vfxgal::INTERSECT_INTERSECTS)
+			if(vmesh.m_clipped)
 			{
-				util::add_simple_mesh(*gdp, vmesh.m_mesh,
+				add_simple_mesh(*gdp, vmesh.m_mesh,
 					pointIDAttribStr, &(vmesh.m_pointRemapping),
 					polyIDAttribStr, &(vmesh.m_polyRemapping),
 					cellTypeAttribStr, static_cast<unsigned int>(vmesh.m_type),
@@ -238,9 +238,9 @@ OP_ERROR SOP_VoronoiFracture::cookMySop(OP_Context &context)
 			const voronoi_cell_mesh& vmesh = *(it->second);
 			unsigned int cellId = it->first;
 
-			if(vmesh.m_type != vfxgal::INTERSECT_INTERSECTS)
+			if(!vmesh.m_clipped)
 			{
-				util::add_simple_mesh(*gdp, vmesh.m_mesh,
+				add_simple_mesh(*gdp, vmesh.m_mesh,
 					pointIDAttribStr, NULL,
 					polyIDAttribStr, NULL,
 					cellTypeAttribStr, static_cast<unsigned int>(vmesh.m_type),
@@ -296,18 +296,18 @@ OP_ERROR SOP_VoronoiFracture::cookMySop(OP_Context &context)
 /***
     Copyright 2008-2012 Dr D Studios Pty Limited (ACN 127 184 954) (Dr. D Studios)
 
-    This file is part of anim-studio-tools.
+    This file is part of vfxgal.
 
-    anim-studio-tools is free software: you can redistribute it and/or modify
+    vfxgal is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    anim-studio-tools is distributed in the hope that it will be useful,
+    vfxgal is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with anim-studio-tools.  If not, see <http://www.gnu.org/licenses/>.
+    along with vfxgal.  If not, see <http://www.gnu.org/licenses/>.
 ***/

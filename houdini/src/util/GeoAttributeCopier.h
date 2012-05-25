@@ -1,6 +1,10 @@
 #ifndef _HDKUTILS_GEOATTRIBUTECOPIER__H_
 #define _HDKUTILS_GEOATTRIBUTECOPIER__H_
 
+#if VFXGAL_HOU_MAJOR_VER > 11
+#error "Houdini-12+ not yet supported."
+#endif
+
 #include <map>
 #include <vector>
 #include <utility>
@@ -765,18 +769,18 @@ bool GeoAttributeCopier::apply2(const attrib_copy& copy)
 /***
     Copyright 2008-2012 Dr D Studios Pty Limited (ACN 127 184 954) (Dr. D Studios)
 
-    This file is part of anim-studio-tools.
+    This file is part of vfxgal.
 
-    anim-studio-tools is free software: you can redistribute it and/or modify
+    vfxgal is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    anim-studio-tools is distributed in the hope that it will be useful,
+    vfxgal is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with anim-studio-tools.  If not, see <http://www.gnu.org/licenses/>.
+    along with vfxgal.  If not, see <http://www.gnu.org/licenses/>.
 ***/

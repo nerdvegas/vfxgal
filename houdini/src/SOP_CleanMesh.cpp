@@ -1,10 +1,10 @@
 #include <UT/UT_DSOVersion.h>
 #include <OP/OP_OperatorTable.h>
 #include <GU/GU_PrimPoly.h>
-#include <houdini/PRM/PRM_Include.h>
-#include <vfxgal/core/adaptors/houdini.hpp>
-#include <vfxgal/core/algorithm/cleanMesh.hpp>
-#include <vfxgal/core/algorithm/remapMesh.hpp>
+#include <PRM/PRM_Include.h>
+#include <vfxgal/adaptors/houdini.hpp>
+#include <vfxgal/algorithm/cleanMesh.hpp>
+#include <vfxgal/algorithm/remapMesh.hpp>
 #include "SOP_CleanMesh.h"
 #include "util/simple_mesh.h"
 #include "util/ScopedCook.h"
@@ -98,7 +98,7 @@ OP_ERROR SOP_CleanMesh::cookMySop(OP_Context &context)
 	vfxgal::remapMesh<GEO_Detail, simple_mesh, int>(*gdp0, m, remap_settings, remap_result);
 
 	// construct the cleaned geometry
-	util::add_simple_mesh(*gdp, m);
+	add_simple_mesh(*gdp, m);
 
 	// transfer attributes
 	GeoAttributeCopier gc(*gdp);
@@ -134,18 +134,18 @@ OP_ERROR SOP_CleanMesh::cookMySop(OP_Context &context)
 /***
     Copyright 2008-2012 Dr D Studios Pty Limited (ACN 127 184 954) (Dr. D Studios)
 
-    This file is part of anim-studio-tools.
+    This file is part of vfxgal.
 
-    anim-studio-tools is free software: you can redistribute it and/or modify
+    vfxgal is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    anim-studio-tools is distributed in the hope that it will be useful,
+    vfxgal is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with anim-studio-tools.  If not, see <http://www.gnu.org/licenses/>.
+    along with vfxgal.  If not, see <http://www.gnu.org/licenses/>.
 ***/
