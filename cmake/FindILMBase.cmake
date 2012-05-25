@@ -28,8 +28,7 @@ if( ILMBase_FIND_REQUIRED AND NOT ILMBASE_FOUND )
 endif( ILMBase_FIND_REQUIRED AND NOT ILMBASE_FOUND )
 
 
-
-###############################################################################
+#
 # Copyright 2012, Allan Johns
 #
 # This file is part of vfxgal.
@@ -46,7 +45,4 @@ endif( ILMBase_FIND_REQUIRED AND NOT ILMBASE_FOUND )
 #
 # You should have received a copy of the GNU Lesser General Public License
 # along with vfxgal.  If not, see <http://www.gnu.org/licenses/>.
-###############################################################################
-
-
-
+#

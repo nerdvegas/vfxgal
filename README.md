@@ -21,3 +21,21 @@ houdini/
 --------
 This is the houdini binding for vfxgal. Various geometric functions are implemented as SOP nodes. Only Houdini 11 is 
 supported at the moment - because of hou12's geo API changes, new bindings have to be written for it.
+
+
+
+Copyright 2012, Allan Johns
+
+vfxgal is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+vfxgal is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with vfxgal.  If not, see <http://www.gnu.org/licenses/>.
+
