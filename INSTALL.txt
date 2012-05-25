@@ -1,0 +1,43 @@
+
+####################################################################################################
+To build:
+####################################################################################################
+
+1) Edit CMakeLists.txt:
+    1.1) Set paths to dependencies in the section shown;
+    1.2) Set desired options in the section shown.
+    
+    Notes: You don't need 'qhull' to install vfxgal, but you'll need it for voronoi fracturing. The
+    qhull binaries just need to be visible. If you want to sort this out later on, just set the
+    VFXGAL_QHULL_REQUIRED option to OFF. If the binaries are visible, the fracture SOP will work.
+
+2) cd ./build;
+
+3) Run: cmake -DCMAKE_INSTALL_PREFIX:PATH=<installpath>
+
+4) Run: make
+
+
+####################################################################################################
+To install:
+####################################################################################################
+
+1) Run: make install
+
+
+####################################################################################################
+To use:
+####################################################################################################
+
+1) Make sure <installpath>/lib is in $LD_LIBRARY_PATH;
+
+2) Make sure <installpath>/houdini/dso is in $HOUDINI_DSO_PATH;
+
+3) Good to go, start Houdini. All SOPs start with 'vfxgal' string.
+
+
+
+
+
+
+
