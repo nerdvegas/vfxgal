@@ -22,8 +22,7 @@ houdini/
 This is the houdini binding for vfxgal. Various geometric functions are implemented as SOP nodes. Only Houdini 11 is 
 supported at the moment - because of hou12's geo API changes, new bindings have to be written for it.
 
-
-
+### license
 Copyright 2012, Allan Johns
 
 vfxgal is free software: you can redistribute it and/or modify
