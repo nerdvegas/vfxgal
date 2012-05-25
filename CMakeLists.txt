@@ -27,12 +27,6 @@ option(VFXGAL_QHULL_REQUIRED "Do not install unless qhull can be found" ON)
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
-# TESTING
-set(BOOST_ROOT /fuel/depot/public/boost/1.42.0-python-2.6.6-ucs4/el5_5.x86_64)
-set(ILMBASE_ROOT /fuel/depot/public/ilmbase/1.0.2/el5_5.x86_64)
-set(TBB_ROOT /fuel/depot/public/tbb/3.0.8/el5_5.x86_64)
-
-
 set(VFXGAL_VERSION_MAJOR 1)
 set(VFXGAL_VERSION_MINOR 0)
 set(VFXGAL_VERSION_PATCH 0)
