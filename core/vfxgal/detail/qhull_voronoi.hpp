@@ -5,6 +5,7 @@
 #include "../exceptions.h"
 #include <sstream>
 #include <limits>
+#include <cstdio>
 #include <pystring.h>
 #include <boost/process.hpp>
 
