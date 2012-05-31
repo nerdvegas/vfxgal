@@ -40,6 +40,7 @@ message(STATUS "Building vfxgal-${VFXGAL_VERSION}...")
 message(STATUS "\nFinding boost...")
 find_package(Boost 1.36 COMPONENTS system REQUIRED)
 message(STATUS "Found boost-${Boost_LIB_VERSION} at ${Boost_LIBRARY_DIRS}")
+add_definitions(-DBOOST_FILESYSTEM_VERSION=2)
 
 message(STATUS "\nFinding ilmbase...")
 find_package(ILMBase 1.0.2 REQUIRED)

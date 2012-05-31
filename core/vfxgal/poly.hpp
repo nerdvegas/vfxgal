@@ -6,6 +6,7 @@
 #include <boost/type_traits/is_same.hpp>
 #include <iterator>
 #include <iostream>
+#include <limits>
 
 
 namespace vfxgal {

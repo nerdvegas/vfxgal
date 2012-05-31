@@ -115,7 +115,7 @@ namespace vfxgal {
 			typedef Imath::Plane3<scalar>							plane3_type;
 			typedef Imath::Box<point_type>							box_type;
 			typedef LineSegment<point_type>							lineseg_type;
-			typedef simple_mesh<point_type>							simple_mesh;
+			typedef simple_mesh<point_type>							simple_mesh_type;
 			typedef VoronoiCell3D<scalar>							voronoi_cell;
 			typedef PolygonSet<Mesh3D>								polygonset_type;
 			typedef Octree<polygonset_type>							octree_type;
@@ -149,7 +149,7 @@ namespace vfxgal {
 
 			void operator()(const _tbb::blocked_range<unsigned int>& r) const;
 
-			void outputUnclippedCellMesh(simple_mesh& smesh, const voronoi_cell& vcell) const;
+			void outputUnclippedCellMesh(simple_mesh_type& smesh, const voronoi_cell& vcell) const;
 
 			const Mesh3D* m_mesh;
 			const std::vector<point_type>& m_vpoints;
@@ -318,7 +318,7 @@ void detail::thread_voronoiFractureMesh3D<Mesh3D>::operator()(
 			{
 				if(m_settings.m_includeExternalCells)
 				{
-					simple_mesh& smesh = vmesh.m_mesh;
+					simple_mesh_type& smesh = vmesh.m_mesh;
 					outputUnclippedCellMesh(smesh, vcell);
 					pcells->insert(typename voronoi_cell_mesh_map::value_type(ri, p_vmesh));
 				}
@@ -364,7 +364,7 @@ void detail::thread_voronoiFractureMesh3D<Mesh3D>::operator()(
 
 template<typename Mesh3D>
 void detail::thread_voronoiFractureMesh3D<Mesh3D>::outputUnclippedCellMesh(
-	simple_mesh& smesh, const voronoi_cell& vcell) const
+	simple_mesh_type& smesh, const voronoi_cell& vcell) const
 {
 	smesh.clear();
 	smesh.m_polys.resize(vcell.m_faces.size());
@@ -407,7 +407,7 @@ void voronoiFractureMesh3D(const Mesh3D* mesh, const Points3D& cell_sites,
 	typedef typename Adaptor::point_type			point_type;
 	typedef Imath::Box<point_type>					box_type;
 	typedef Imath::Plane3<scalar>					plane3_type;
-	typedef simple_mesh<point_type>					simple_mesh;
+	typedef simple_mesh<point_type>					simple_mesh_type;
 	typedef PolygonSet<Mesh3D>						polygonset_type;
 	typedef Octree<polygonset_type>					octree_type;
 	typedef VoronoiCell3D<scalar>					voronoi_cell;
