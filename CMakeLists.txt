@@ -1,6 +1,16 @@
 cmake_minimum_required(VERSION 2.8)
 project(vfxgal)
 
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+include(GetCXXCompiler)
+include(GetBoost)
+
+set(BOOST_ROOT $ENV{BOOST_ROOT})
+set(ILMBASE_ROOT $ENV{ILMBASE_ROOT})
+set(TBB_ROOT $ENV{TBB_ROOT})
+set(HOUDINI_ROOT $ENV{HOUDINI_ROOT})
+set(QHULL_ROOT $ENV{QHULL_ROOT})
+
 
 ####
 #### USER EDIT BEGIN HERE...
@@ -13,19 +23,20 @@ project(vfxgal)
 #set(QHULL_ROOT /wherever/your/qhull/is/installed) # OR just add qhull to $PATH
 
 # Set options to ON/OFF here
+option(VFXGAL_STATIC_LINK_BOOST "Statically link to boost libs" OFF)
+option(VFXGAL_ENSURE_BOOST_VERSION_MATCH "Make sure system and app boost versions match" ON)
 option(VFXGAL_NO_TBB "Disable multithreading" OFF)
 option(VFXGAL_BUILD_TEST "Build unit test" ON)
-option(VFXGAL_BUILD_HOUDINI "Build houdini binding" ON)
-option(VFXGAL_USE_HOUDINI_TBB "Defer to houdini tbb" ON)
 # for voronoi fracturing...
 option(VFXGAL_QHULL_REQUIRED "Do not install unless qhull can be found" ON)
+# houdini only...
+option(VFXGAL_BUILD_HOUDINI "Build houdini binding" ON)
+option(VFXGAL_USE_HOUDINI_TBB "Defer to houdini tbb" ON)
 ####
 #### USER EDIT END HERE.
 ####
 
 
-
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 set(VFXGAL_VERSION_MAJOR 1)
 set(VFXGAL_VERSION_MINOR 0)
@@ -37,10 +48,15 @@ message(STATUS "Building vfxgal-${VFXGAL_VERSION}...")
 # Find Dependencies
 ###############################################################################
 
+GetCXXCompiler(VFXGAL)
+
 message(STATUS "\nFinding boost...")
-find_package(Boost 1.36 COMPONENTS system REQUIRED)
-message(STATUS "Found boost-${Boost_LIB_VERSION} at ${Boost_LIBRARY_DIRS}")
-add_definitions(-DBOOST_FILESYSTEM_VERSION=2)
+if(VFXGAL_STATIC_LINK_BOOST)
+    set(Boost_USE_STATIC_LIBS ON)
+endif(VFXGAL_STATIC_LINK_BOOST)
+GetBoost(1.36 COMPONENTS system REQUIRED)
+set(_boost_VER_1 ${Boost_NORMALIZED_VERSION})
+message(STATUS "Found boost-${Boost_NORMALIZED_VERSION} at ${Boost_LIBRARY_DIRS}")
 
 message(STATUS "\nFinding ilmbase...")
 find_package(ILMBase 1.0.2 REQUIRED)

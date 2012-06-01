@@ -12,7 +12,7 @@
 #
 
 set(TBB_FOUND FALSE)
-unset(TBBROOT CACHE) # because FindTbb can be called multiple times
+unset(TBBROOT CACHE) # so we can be called multiple times
 find_path(TBBROOT NAMES include/tbb/tbb.h HINTS ${TBB_ROOT} )
 
 if(TBBROOT)
@@ -34,8 +34,6 @@ endif( Tbb_FIND_REQUIRED AND NOT TBB_FOUND )
 
 #
 # Copyright 2012, Allan Johns
-#
-# This file is part of vfxgal.
 #
 # vfxgal is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published by

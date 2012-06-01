@@ -7,7 +7,7 @@
 #  QHULL_VERSION
 #  QHULL_BINARY
 #
-# Note: includes, libs not detected, vfxgal only uses qhull via cmdlin.
+# Note: includes, libs not detected yet, add if/when needed.
 #
 
 find_program(QHULL_BINARY qhull PATHS ${QHULL_ROOT}/bin)
@@ -23,8 +23,6 @@ endif(QHULL_BINARY STREQUAL "QHULL_BINARY-NOTFOUND" )
 
 #
 # Copyright 2012, Allan Johns
-#
-# This file is part of vfxgal.
 #
 # vfxgal is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published by

@@ -11,7 +11,11 @@
 #  HOUDINI_INCLUDE_DIRS
 #  HOUDINI_LIBRARY_DIRS
 #  HOUDINI_DEFINITIONS
+#  HOUDINI_TOOLKIT_DIR
 #
+
+include(GetCXXCompiler)
+
 
 find_program(HOUDINI_BINARY houdini PATHS ${HOUDINI_ROOT}/bin)
 if(HOUDINI_BINARY STREQUAL "HOUDINI_BINARY-NOTFOUND" )
@@ -27,6 +31,7 @@ else(HOUDINI_BINARY STREQUAL "HOUDINI_BINARY-NOTFOUND" )
     get_filename_component(HOUDINI_BASE ${HOUDINI_BASE} PATH)
     set(HOUDINI_LIBRARY_DIRS ${HOUDINI_BASE}/dsolib)  
     set(HOUDINI_INCLUDE_DIRS ${HOUDINI_BASE}/toolkit/include)
+    set(HOUDINI_TOOLKIT_DIR ${HOUDINI_BASE}/toolkit)
     
     file(READ "${HOUDINI_INCLUDE_DIRS}/UT/UT_Version.h" _HOU_UTVER_CONTENTS)
     string(REGEX REPLACE ".*#define UT_MAJOR_VERSION_INT ([0-9]+).*" "\\1" HOUDINI_MAJOR_VERSION "${_HOU_UTVER_CONTENTS}")
@@ -40,14 +45,21 @@ else(HOUDINI_BINARY STREQUAL "HOUDINI_BINARY-NOTFOUND" )
     list(APPEND HOUDINI_DEFINITIONS -DVERSION="$ENV{HOUDINI_VERSION}")
     list(APPEND HOUDINI_DEFINITIONS -DMAKING_DSO )
     list(APPEND HOUDINI_DEFINITIONS -DUT_DSO_TAGINFO="vfxgal" )
-    if (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUXX)
-        execute_process(COMMAND ${CMAKE_C_COMPILER} -dumpversion
-                        OUTPUT_VARIABLE GCC_VERSION)
-        if (GCC_VERSION VERSION_LESS 4.3)
-            list(APPEND HOUDINI_DEFINITIONS -DNEED_SPECIALIZATION_STORAGE )
-        endif()
-    endif()
-
+    
+    GetCXXCompiler(_HOU)
+    set(_HOU_NEED_SPEC_STORAGE TRUE)
+    if(_HOU_COMPILER_VERSION)
+        if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUXX)
+            if(_HOU_COMPILER_VERSION VERSION_GREATER 4.2)
+                set(_HOU_NEED_SPEC_STORAGE FALSE)
+            endif(_HOU_COMPILER_VERSION VERSION_GREATER 4.2)
+        endif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUXX)
+    endif(_HOU_COMPILER_VERSION)
+    
+    if(_HOU_NEED_SPEC_STORAGE)
+        list(APPEND HOUDINI_DEFINITIONS -DNEED_SPECIALIZATION_STORAGE )
+    endif(_HOU_NEED_SPEC_STORAGE)
+    
     # platform-specific definitions
     if( APPLE )
         # OSX
@@ -86,8 +98,6 @@ endif( Houdini_FIND_REQUIRED AND NOT HOUDINI_FOUND )
 
 #
 # Copyright 2012, Allan Johns
-#
-# This file is part of vfxgal.
 #
 # vfxgal is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published by
